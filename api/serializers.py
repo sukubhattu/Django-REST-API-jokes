@@ -6,4 +6,4 @@ from .models import Jokes
 class JokesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Jokes
-        fields = ["id", "author", "createdDate"]
+        fields = ["id", "punchLine", "author", "createdDate"]
