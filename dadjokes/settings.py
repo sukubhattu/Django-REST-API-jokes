@@ -39,15 +39,28 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # API
     "rest_framework",
+    # For authentication
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    # documentation
+    "drf_yasg",
     # Local apps
     "api.apps.ApiConfig",
+
 ]
 
 # API permission
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication'
+    ],
+
 }
 
 
