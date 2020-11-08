@@ -18,6 +18,11 @@ class JokeDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = JokesSerializer
 
 
+class JokeCreate(generics.CreateAPIView):
+    queryset = Jokes.objects.all()
+    serializer_class = JokesSerializer
+
+
 class JokeRandom(generics.RetrieveUpdateDestroyAPIView):
     queryset = Jokes.objects.all()
     serializer_class = JokesSerializer
