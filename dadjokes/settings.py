@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     # For authentication
     "rest_framework.authtoken",
     "dj_rest_auth",
+    # CORS
+    "corsheaders",
     # documentation
     "drf_yasg",
     # Local apps
@@ -67,12 +69,19 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    # CORS
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8080',
+    'http://localhost:8000',
+)
+
 
 ROOT_URLCONF = "dadjokes.urls"
 
