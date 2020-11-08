@@ -6,6 +6,7 @@ from .models import Jokes
 from .serializers import JokesSerializer
 
 import random
+from django.http import Http404
 
 
 class JokesList(generics.ListAPIView):
@@ -32,6 +33,9 @@ class JokeRandom(generics.RetrieveUpdateDestroyAPIView):
         count = queryset.count()
         randomPK = (random.randint(1, count))
         # make sure to catch 404's below
-        obj = queryset.get(pk=randomPK)
-        self.check_object_permissions(self.request, obj)
-        return obj
+        try:
+            obj = queryset.get(pk=randomPK)
+            self.check_object_permissions(self.request, obj)
+            return obj
+        except Jokes.DoesNotExist:
+            raise Http404
